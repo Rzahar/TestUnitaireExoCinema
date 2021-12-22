@@ -120,20 +120,20 @@ public class SeanceControllerTest {
         Gson json = new GsonBuilder().create();
         String body = json.toJson(this.seanceDTO());
         this.mockMvc.perform(delete("/seances")
-                        .contentType(MediaType.APPLICATION_JSON) // Le type de données que l'on passe dans notre request
-                        .content(body)) // Le contenu du body
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
                 .andExpect(status().isOk());
     }
 
     private SeanceDTO seanceDTO() {
         Date date = new Date();
         Salle salle = new Salle();
-        return new SeanceDTO("1",date,salle );
+        return new SeanceDTO("1", date, salle);
     }
 
     private SeanceDTO seanceDTOUpdate() {
         Date date = new Date();
         Salle salle = new Salle();
-        return new SeanceDTO("2",date,salle );
+        return new SeanceDTO("2", date, salle);
     }
 }

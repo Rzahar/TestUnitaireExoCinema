@@ -41,14 +41,14 @@ public class SalleControllerTest {
     SalleService service;
 
     @Test
-    public void testFindAllCinemas() throws Exception{
+    public void testFindAllCinemas() throws Exception {
         this.mockMvc.perform(get("/salles"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isEmpty());
     }
 
     @Test
-    public void testWrongSalleOrWrongId() throws Exception{
+    public void testWrongSalleOrWrongId() throws Exception {
         this.mockMvc.perform(get("/salles/1"))
                 .andExpect(status().isNotFound());
     }
@@ -59,7 +59,7 @@ public class SalleControllerTest {
         BDDMockito.given(service.findByID("1"))
                 .willReturn(Optional.of(salleDTO));
 
-        MvcResult result =this.mockMvc.perform(get("/salles/1"))
+        MvcResult result = this.mockMvc.perform(get("/salles/1"))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -71,14 +71,13 @@ public class SalleControllerTest {
         );
         Assertions.assertEquals(body.getId(), this.salleDTO().getId());
         Assertions.assertEquals(body.getNumDeSalle(), this.salleDTO().getNumDeSalle());
-        Assertions.assertEquals(body.getNbrPlace(), this.salleDTO().getNumDeSalle());
+        Assertions.assertEquals(body.getNbrPlace(), this.salleDTO().getNbrPlace());
         Assertions.assertEquals(body.getCinema(), this.salleDTO().getCinema());
     }
 
 
-
     @Test
-    public void testSaveSalleDTO() throws Exception{
+    public void testSaveSalleDTO() throws Exception {
         SalleDTO salleDTO = this.salleDTO();
         Gson json = new GsonBuilder().create();
         String body = json.toJson(salleDTO);
@@ -90,7 +89,7 @@ public class SalleControllerTest {
     }
 
     @Test
-    public void testUpdateSalleDTO()throws Exception{
+    public void testUpdateSalleDTO() throws Exception {
         SalleDTO salleDTO = this.salleDTO();
         SalleDTO salleDTOUpdate = this.salleDTOUpdate();
 
@@ -122,26 +121,24 @@ public class SalleControllerTest {
     }
 
     @Test
-    public void testDeleteSalle() throws Exception{
+    public void testDeleteSalle() throws Exception {
         Gson json = new GsonBuilder().create();
         String body = json.toJson(this.salleDTO());
         this.mockMvc.perform(delete("/salles")
-                        .contentType(MediaType.APPLICATION_JSON) // Le type de données que l'on passe dans notre request
-                        .content(body)) // Le contenu du body
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
                 .andExpect(status().isOk());
     }
 
 
-
-
     private SalleDTO salleDTO() {
         Cinema cinema = new Cinema();
-        return new SalleDTO("1",4,90,cinema);
+        return new SalleDTO("1", 4, 90, cinema);
     }
 
     private SalleDTO salleDTOUpdate() {
         Cinema cinema = new Cinema();
-        return new SalleDTO("1",8,120,cinema);
+        return new SalleDTO("1", 8, 120, cinema);
     }
 
 }
