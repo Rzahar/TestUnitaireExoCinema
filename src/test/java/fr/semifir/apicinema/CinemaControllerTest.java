@@ -45,8 +45,8 @@ public class CinemaControllerTest {
 
     @Test
     public void testWrongCinemaOrWrongId() throws Exception{
-    this.mockMvc.perform(get("/cinemas/1"))
-            .andExpect(status().isNotFound());
+        this.mockMvc.perform(get("/cinemas/1"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class CinemaControllerTest {
         this.mockMvc.perform(post("/cinemas")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
-                .andExpect(status().isCreated());
+                .andExpect(status().isOk());
 
     }
 
