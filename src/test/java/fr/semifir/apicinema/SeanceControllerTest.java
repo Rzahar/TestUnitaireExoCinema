@@ -67,8 +67,6 @@ public class SeanceControllerTest {
                 SeanceDTO.class
         );
         Assertions.assertEquals(body.getId(), this.seanceDTO().getId());
-        Assertions.assertEquals(body.getDate(), this.seanceDTO().getDate());
-        Assertions.assertEquals(body.getSalle(), this.seanceDTO().getSalle());
     }
 
 
