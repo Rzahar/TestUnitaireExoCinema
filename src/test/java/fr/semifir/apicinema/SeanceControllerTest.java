@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import fr.semifir.apicinema.controllers.SeanceController;
 import fr.semifir.apicinema.dtos.seance.SeanceDTO;
+import fr.semifir.apicinema.entities.Cinema;
 import fr.semifir.apicinema.entities.Salle;
 import fr.semifir.apicinema.entities.Seance;
 import fr.semifir.apicinema.services.SeanceService;
@@ -127,13 +128,13 @@ public class SeanceControllerTest {
 
     private SeanceDTO seanceDTO() {
         Date date = new Date();
-        Salle salle = new Salle();
+        Salle salle = new Salle("1",1,90,new Cinema());
         return new SeanceDTO("1", date, salle);
     }
 
     private SeanceDTO seanceDTOUpdate() {
         Date date = new Date();
-        Salle salle = new Salle();
+        Salle salle = new Salle("1",1,120,new Cinema());
         return new SeanceDTO("2", date, salle);
     }
 }
